@@ -23,3 +23,24 @@ The **Digit Recognition using Deep Learning WebApp** is a simple yet powerful we
 
    ```bash
    https://github.com/awasthiesDev/Handwritten-Digit-Recognition-WebApp.git
+
+## Run Locally
+
+- Open the project folder in any text editor like **Visual Studio Code**.
+
+- Make sure you have **Python** installed along with the required libraries (`tensorflow`, `keras`, etc.).
+
+- If using a backend (e.g., Flask or similar), navigate to the project directory and run:
+
+  ```bash
+  python app.py
+
+## Future Improvements
+
+- Integrate with Flask or Django for full-stack deployment.
+- Add a drawing canvas for users to write digits directly within the app.
+- Improve UI/UX design for a more polished and responsive interface.
+- Implement drag-and-drop functionality for easier image upload.
+- Optimize model loading and prediction time for better performance.
+- Add error handling for unsupported image formats.
+- Deploy the project on a cloud platform for wider accessibility.
