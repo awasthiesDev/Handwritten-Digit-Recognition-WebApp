@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digit Recognition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-image: url('/static/bg.jpg'); /* Path to your background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100 bg-opacity-50">
+    <h1 class="text-2xl font-bold mb-4 text-white">Handwritten Digit Recognition</h1>
+    
+    <input type="file" id="fileInput" class="mb-4 p-2 border rounded bg-white">
+    
+    <div class="flex gap-4">
+        <button onclick="uploadImage()" class="bg-blue-500 text-white px-4 py-2 rounded">Predict</button>
+        <button onclick="resetForm()" class="bg-red-500 text-white px-4 py-2 rounded">Reset</button>
+    </div>
+
+    <p id="result" class="mt-4 text-lg font-semibold text-white"></p>
+
+    <script>
+        function uploadImage() {
+            let fileInput = document.getElementById('fileInput');
+            let file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please upload an image");
+                return;
+            }
+
+            let formData = new FormData();
+            formData.append("file", file);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerText = "Predicted Digit: " + data.prediction;
+            })
+            .catch(error => console.error("Error:", error));
+        }
+
+        function resetForm() {
+            document.getElementById('fileInput').value = ""; // Clear file input
+            document.getElementById('result').innerText = ""; // Clear prediction result
+        }
+    </script>
+</body>
+</html>
